@@ -1,0 +1,98 @@
+<% layout("/layouts/boilerplate") %>  
+
+    <div id="filters">
+        <div class="filter-container">
+       <a href="/listings?category=Trending" class="filter">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+       </a>
+       <a href="/listings?category=Rooms" class="filter">
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+       </a>
+       <a href="/listings?category=Iconic Cities" class="filter">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic Cities</p>
+       </a>
+       <a href="/listings?category=Mountains" class="filter">
+        <div><i class="fa-solid fa-mountain-sun"></i></div>
+        <p>Mountains</p>
+       </a>
+       <a href="/listings?category=Castles" class="filter">
+        <div><i class="fa-brands fa-fort-awesome"></i></div>
+        <p>Castles</p>
+       </a>
+       <a href="/listings?category=Amazing Pools" class="filter">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Pools</p>
+       </a>
+       <a href="/listings?category=Camping" class="filter">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+       </a>
+        <a href="/listings?category=Farms" class="filter">
+        <div><i class="fa-solid fa-tractor"></i></div>
+        <p>Farms</p>
+        </a>
+        <a href="/listings?category=Fishing" class="filter">
+        <div><i class="fa-solid fa-fish-fins"></i></div>
+        <p>Fishing</p>
+        </a>
+         <a href="/listings?category=Hiking" class="filter">
+        <div><i class="fa-solid fa-person-hiking"></i></div>
+        <p>Hiking</p>
+         </a>
+         <a href="/listings?category=Food" class="filter">
+        <div><i class="fa-solid fa-burger"></i></div>
+        <p>Food</p>
+         </a>
+         <a href="/listings?category=Para-Gliding" class="filter">
+        <div><i class="fa-solid fa-parachute-box"></i></div>
+        <p>Para-Gliding</p>
+         </a>
+        <a href="/listings?category=Picnic" class="filter">
+        <div><i class="fa-solid fa-champagne-glasses"></i></div>
+        <p>Picnic</p>
+        </a>
+        </div>
+
+        <div class="tax-toggle">
+            <div class="form-check-reverse form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+        <label class="form-check-label" for="switchCheckDefault">Display Total After Taxes</label>
+</div>
+        </div>
+        </div>
+    
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% for(let listing of allListings) { %>
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+        <div class="card col listing-card">
+    <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+    <div class="card-img-overlay"></div>
+    <div class="card-body">
+        <p class="card-text"> 
+           <b> <%=listing.title%> <br></b>
+             <%= listing.price.toLocaleString("en-IN") %> /night
+             <i class="tax-info">&nbsp; &nbsp;+18% GST</i>
+        </p>
+    </div>
+    </div>
+    </a>
+    <% } %>
+</div>
+
+<script>
+    let taxSwitch = document.getElementById("switchCheckDefault");
+    taxSwitch.addEventListener("click", () => {
+      let taxInfo = document.getElementsByClassName("tax-info");
+      for(info of taxInfo) {
+        if(info.style.display != "inline") {
+           info.style.display = "inline";
+        } else {
+             info.style.display = "none";
+        }
+      }
+    });
+</script>
