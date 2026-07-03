@@ -94,6 +94,10 @@ main().catch((err) => {
 //      let registeredUser = await User.register(fakeUser, "password");
 //      res.send(registeredUser);
 //    });
+
+   app.get("/", (req, res) => {
+    res.redirect("/listings");
+   });
     
 
     app.use("/listings", listingsRouter);
